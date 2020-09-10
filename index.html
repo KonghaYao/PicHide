@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PicHide</title>
+</head>
+<link rel="stylesheet" href="./css/index.css">
+
+<body>
+    <header>
+        <input type="text" id='url' placeholder="请输入在线图种"><button id="UnZip">打开在线图种</button>
+    </header>
+    <main>
+        <div class='imgPart'>
+            <div href="" class='input'>
+                <label>外部的图片</label>
+                <input id="Img" type="file" accept="image/png, image/jpeg">
+            </div>
+
+
+            <div class="display">
+                <img id='ImgDisplay'>
+            </div>
+        </div>
+
+        <div class='filePart'>
+            <div style='display:flex;flex-direction:column;'>
+                <label>添加需要隐藏的多个文件</label>
+                <input id="Files" type="file" multiple>
+            </div>
+
+
+            <div class="display">
+                <label>双击取消文件,悬停看大小</label>
+                <div id='fileList'>
+
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer>
+        <button id='download'>下载图种</button>
+    </footer>
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/jszip@3.5.0/dist/jszip.min.js"></script>
+<script src="./js/index.js" type="module"></script>
+
+</html>

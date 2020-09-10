@@ -1,0 +1,95 @@
+body{
+    padding: 0;
+    margin: 0;
+    border: 0;
+    height: 100vh;
+    width: 100vw;
+    display:flex;
+    flex-direction:column;
+    outline-style:none;
+}
+button:active,button:focus,input:active,input:focus{
+    outline-style:none;
+}
+*{
+    transition:0.2s;
+}
+main{
+    flex:1;
+    display: flex;
+}
+main > div{
+    flex:1;
+}
+.imgPart,.input,.filePart{
+    display:flex;
+    flex-direction: column;
+}
+.ImgDisplay{
+    width:100%;
+}
+label{
+    text-align:center;
+    padding:10px
+}
+main >div>*{
+    margin: 20px;
+    border:2px dashed #ccc;
+}
+.display{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    justify-content: space-evenly;
+
+}
+.display >div{
+    flex:1;
+}
+img{
+    max-width: 400px;
+}
+input[type=file]{
+    justify-self: space-evenly;
+}
+header{
+    display:flex;
+    height: 60px;
+}
+header>button{
+    flex: 1;
+    border:0;
+    border-bottom: 7px dashed #ccc;
+    font-size: 25px;
+    background-color: #fafafa;
+}
+header>button:hover{
+    
+    background-color: #f0f0f0;
+}
+header>input{
+    flex: 1
+}
+footer{
+    display:flex;
+    flex-direction: column;
+    height: 60px;
+}
+
+footer>button,header>button{
+    flex: 1;
+}
+li{
+    list-style: none;
+    text-align:center;
+}
+#download{
+    border:0;
+    border-top: 7px dashed #ccc;
+    font-size: 25px;
+    background-color: #fafafa;
+    
+}
+#download:hover{
+    background-color: #f0f0f0;
+}
