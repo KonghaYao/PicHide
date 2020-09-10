@@ -23,4 +23,4 @@ async function download(input) {
     let zipBlob = await getPicZip(input);
     downBlob([zipBlob]);
 }
-export { Img, download };
+export { Img, download, downBlob };

@@ -1,4 +1,4 @@
-import { Img, download } from "./Zip.js";
+import { Img, download, downBlob } from "./Zip.js";
 import unzip from "./UnZip.js";
 
 const Download = document.getElementById("download");
@@ -13,17 +13,22 @@ let ALLFile = [];
 //对所有压缩包内文件的展示
 Object.defineProperty(ALLFile, "change", {
     set(value) {
-        ALLFile = value;
+        ALLFile.push(...value);
         Files.value = "";
         ALLFile.forEach((file) => {
             let li = document.createElement("li");
             li.innerText = file.name;
             li.title = file.size / 1024 + "K";
-            li.addEventListener("dblclick", (e) => {
+            li.addEventListener("click", (e) => {
+                console.log(e);
                 let i;
                 [...e.target.parentElement.children].some((dom, index1) => (dom.isSameNode(e.target) ? ((i = index1), i) : false));
-                ALLFile.splice(i, 1);
-                e.target.remove();
+                if (e.ctrlKey === true) {
+                    downBlob([ALLFile[i]]);
+                } else if (e.altKey === true) {
+                    ALLFile.splice(i, 1);
+                    e.target.remove();
+                }
             });
             fileList.appendChild(li);
         });
@@ -50,8 +55,8 @@ Img.addEventListener("change", (e) => {
 
 // 多文件上传按钮
 Files.addEventListener("change", (e) => {
-    fileList.innerHTML = "";
     ALLFile.change = [...e.target.files];
+    Files.file = "";
 });
 
 //解压在线文件
@@ -61,6 +66,7 @@ UnZip.addEventListener("click", (e) => {
         .then((res) => unzip(res))
         .then((files) => {
             fileList.innerHTML = "";
+            Files.files = "";
             ALLFile.change = files;
             Img.src = url.value;
         })
