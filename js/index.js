@@ -1,5 +1,4 @@
 import { Img, download, downBlob } from "./Zip.js";
-import unzip from "./UnZip.js";
 
 const Download = document.getElementById("download");
 const Files = document.getElementById("Files");
@@ -63,12 +62,22 @@ Files.addEventListener("change", (e) => {
 UnZip.addEventListener("click", (e) => {
     fetch(url.value)
         .then((res) => res.blob())
-        .then((res) => unzip(res))
+        .then(async (res) => {
+            res = new Blob([res], { type: "application/x-rar-compressed" });
+            console.log(res);
+            let zip = new JSZip();
+            let zipPackage = await zip.loadAsync(zip);
+            console.log(zipPackage);
+            return [...zipPackage.files];
+        })
         .then((files) => {
             fileList.innerHTML = "";
             Files.files = "";
             ALLFile.change = files;
             Img.src = url.value;
         })
-        .catch((err) => alert("这个 URL 不行"));
+        .catch((err) => {
+            console.log(err);
+            alert("这个 URL 不行");
+        });
 });
